@@ -63,7 +63,7 @@ class RemoteControlApp(App):
     dataSocket = socket(AF_INET, SOCK_STREAM)
     on_connection = True
     try:
-        dataSocket.connect(('172.17.239.255', 8000))  
+        dataSocket.connect(('10.27.250.165', 8000))  
     except (ConnectionError, OSError):
         on_connection = False
         
