@@ -9,6 +9,7 @@ from cv_bridge import CvBridge
 
 def callback(data):
     global image
+    bridge = CvBridge()
     image = bridge.imgmsg_to_cv2(data, "bgr8")
     
 
