@@ -48,7 +48,6 @@ def callback(data):
         elif command == 'grasp':
             pass
 
-
         encode_params = [cv2.IMWRITE_PNG_COMPRESSION, 8]
         result, image_encode = cv2.imencode('.png', image, encode_params)
         data = np.array(image_encode)
@@ -68,7 +67,7 @@ if __name__ == '__main__':
         listenSocket.listen(1)
         rospy.loginfo('The server has already started')
         dataSocket, address = listenSocket.accept()
-        rospy.loginfo('Connected')
+        rospy.loginfo('Connected to the remote control')
         
         publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         image_topic = rospy.get_param("image_topic", default="/camera/color/image_raw")
