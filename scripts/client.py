@@ -17,12 +17,6 @@ FloatLayout:
         Rectangle: 
             size: self.size
             source: './data/background.png'
-            
-    Label:
-        id: label
-        font_size: 50  
-        color: 1, 0, 0, 1
-        center: self.center
         
     Image:
         id: real_time_image
@@ -63,7 +57,13 @@ FloatLayout:
         size_hint: .1, .1
         center: root.width / 2, root.height / 2 - 175
         on_press: app.grasp()
-        on_release: app.stop()
+        on_release: app.withdraw()
+
+    Label:
+        id: label
+        font_size: 50  
+        color: 1, 0, 0, 1
+        center: self.center
 """)
 
 
@@ -73,7 +73,7 @@ class RemoteControlApp(App):
     dataSocket = socket(AF_INET, SOCK_STREAM)
     on_connection = True
     try:
-        dataSocket.connect(('172.17.229.35', 8000))  
+        dataSocket.connect(('10.27.250.165', 8000))  
     except (ConnectionError, OSError):
         on_connection = False
         
@@ -134,6 +134,10 @@ class RemoteControlApp(App):
     
     def grasp(self, *args):
         self.command = 'grasp'
+
+
+    def withdraw(self, *args):
+        self.command = 'withdraw'
         
     
     def stop(self, *args):
