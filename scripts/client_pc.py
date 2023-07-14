@@ -79,8 +79,8 @@ class RemoteControlApp(App):
         
         
     def build(self):
-        send_event = Clock.schedule_interval(self.send_message, 1.0)
-        receive_event = Clock.schedule_interval(self.receive_message, 1.0)
+        send_event = Clock.schedule_interval(self.send_message, 1.0 / 30.0)
+        receive_event = Clock.schedule_interval(self.receive_message, 1.0 / 30.0)
         if not self.on_connection:
             send_event.cancel()
             receive_event.cancel()
