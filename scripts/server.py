@@ -2,15 +2,18 @@ import rospy
 import cv2
 import numpy as np
 import time
+from math import pi
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
+from swiftpro.msg import SwiftproState
 from socket import *
 from cv_bridge import CvBridge
 
 
 def callback(data):
     global dataSocket
-    global publisher
+    global moving_publisher
+    global grasping_publisher
     global on_connection
     bridge = CvBridge()
     image = bridge.imgmsg_to_cv2(data, "bgr8")
@@ -23,30 +26,35 @@ def callback(data):
         command = data.decode('utf-8')
         if command == 'stop':
             message = Twist()
-            publisher.publish(message)
+            moving_publisher.publish(message)
 
         elif command == 'forward':
             message = Twist()
             message.linear.x = 1.5
-            publisher.publish(message)
+            moving_publisher.publish(message)
             
         elif command == 'backward':
             message = Twist()
             message.linear.x = -1.5
-            publisher.publish(message)
+            moving_publisher.publish(message)
             
         elif command == 'left':
             message = Twist()
             message.angular.z = 0.5
-            publisher.publish(message)
+            moving_publisher.publish(message)
             
         elif command == 'right':
             message = Twist()
             message.angular.z = -0.5
-            publisher.publish(message)
+            moving_publisher.publish(message)
             
         elif command == 'grasp':
-            pass
+            message = SwiftproState()
+            message.motor_angle1 = pi / 6
+            message.motor_angle2 = pi / 6
+            message.motor_angle3 = pi / 6
+            message.motor_angle4 = pi / 6
+            grasping_publisher.publish(message)
 
         encode_params = [cv2.IMWRITE_PNG_COMPRESSION, 8]
         result, image_encode = cv2.imencode('.png', image, encode_params)
@@ -58,7 +66,7 @@ def callback(data):
 
 if __name__ == '__main__':
     dataSocket = None
-    publisher = None
+    moving_publisher = None
     try:
         rospy.init_node("server", anonymous=True)
         
@@ -69,7 +77,8 @@ if __name__ == '__main__':
         dataSocket, address = listenSocket.accept()
         rospy.loginfo('Connected to the remote control')
         
-        publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+        moving_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
+        grasping_publisher = rospy.Publisher('SwiftproState_topic', SwiftproState, queue_size=10)
         image_topic = rospy.get_param("image_topic", default="/camera/color/image_raw")
         rospy.Subscriber(image_topic, Image, callback, queue_size=10)
         
