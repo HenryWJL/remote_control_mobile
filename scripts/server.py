@@ -5,7 +5,7 @@ import time
 from math import pi
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Image
-from swiftpro.msg import SwiftproState
+from swiftpro.msg import position
 from socket import *
 from cv_bridge import CvBridge
 
@@ -49,20 +49,23 @@ def callback(data):
             moving_publisher.publish(message)
             
         elif command == 'grasp':
-            message = SwiftproState()
-            message.motor_angle1 = pi / 6
-            message.motor_angle2 = pi / 6
-            message.motor_angle3 = pi / 6
-            message.motor_angle4 = pi / 6
+            message = position()
+            message.x = 300
+            message.z = -45
             grasping_publisher.publish(message)
-
+        
+        elif command == 'withdraw':
+            message = position()
+            message.x = 120
+            grasping_publisher.publish(message)
+            
         encode_params = [cv2.IMWRITE_PNG_COMPRESSION, 8]
         result, image_encode = cv2.imencode('.png', image, encode_params)
         data = np.array(image_encode)
         data = data.tobytes()
         dataSocket.send(str(len(data)).ljust(16).encode())
         dataSocket.send(data)
-
+            
 
 if __name__ == '__main__':
     dataSocket = None
@@ -79,7 +82,7 @@ if __name__ == '__main__':
         rospy.loginfo('Connected to the remote control')
         
         moving_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-        grasping_publisher = rospy.Publisher('SwiftproState_topic', SwiftproState, queue_size=10)
+        grasping_publisher = rospy.Publisher('/position_write_topic', position, queue_size=10)
         image_topic = rospy.get_param("image_topic", default="/camera/color/image_raw")
         rospy.Subscriber(image_topic, Image, callback, queue_size=10)
         
