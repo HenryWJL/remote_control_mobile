@@ -67,6 +67,7 @@ def callback(data):
 if __name__ == '__main__':
     dataSocket = None
     moving_publisher = None
+    grasping_publisher = None
     try:
         rospy.init_node("server", anonymous=True)
         
