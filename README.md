@@ -1,4 +1,5 @@
 # The Remote Control of Spark-H Robot
+This package is customized for the Spark-H robot with the purpose of using a mobile phone to control the robot. Python socket is used to realize the communication between the mobile phone and the robot's PC.
 ## Usage
 #### (1) Git clone this repository to your workspace.
 ```bash
@@ -12,5 +13,5 @@ source devel/setup.bash
 ```bash
 roslaunch remote_control_socket server.launch
 ```
-#### (3) Generate a `.apk` file from `client.py` using buildozer or other tools.
+#### (3) Generate a `.apk` file from `client.py` and `data` using buildozer or other tools.
 #### (4) Download the app on your mobile phone, and now you can manipulate the Spark-H robot with your phone.
