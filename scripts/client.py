@@ -26,36 +26,36 @@ FloatLayout:
                
     Button:
         background_normal: './data/icons/up_arrow.png'
-        size_hint: .1, .1
-        center: root.width / 2, root.height / 2 - 100
+        size_hint: .08, .08
+        center: root.width / 2, root.height / 2 - 150
         on_press: app.go_forward()
         on_release: app.stop()
         
     Button:
         background_normal: './data/icons/down_arrow.png'
-        size_hint: .1, .1
+        size_hint: .08, .08
         center: root.width / 2, root.height / 2 - 250
         on_press: app.go_backward()
         on_release: app.stop()
         
     Button:
         background_normal: './data/icons/left_arrow.png'
-        size_hint: .1, .1
-        center: root.width / 2 - 75, root.height / 2 - 175
+        size_hint: .08, .08
+        center: root.width / 2 - 50, root.height / 2 - 200
         on_press: app.go_left()
         on_release: app.stop()
 
     Button:
         background_normal: './data/icons/right_arrow.png'
-        size_hint: .1, .1
-        center: root.width / 2 + 75, root.height / 2 - 175
+        size_hint: .08, .08
+        center: root.width / 2 + 50, root.height / 2 - 200
         on_press: app.go_right()
         on_release: app.stop()
         
     Button:
         background_normal: './data/icons/circle.png'
-        size_hint: .1, .1
-        center: root.width / 2, root.height / 2 - 175
+        size_hint: .08, .08
+        center: root.width / 2, root.height / 2 - 200
         on_press: app.grasp()
         on_release: app.withdraw()
 
