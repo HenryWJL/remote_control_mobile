@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(remote_control_mobile)
+project(remote_control_socket)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
