@@ -68,17 +68,19 @@ FloatLayout:
 
 
 class RemoteControlApp(App):
-    command = StringProperty('stop')
-    image = StringProperty('data/image.png')
+    command = StringProperty('stop')  # The command sent to the server
+    image = StringProperty('data/image.png')  # The displayed image
     dataSocket = socket(AF_INET, SOCK_STREAM)
-    on_connection = True
+    on_connection = True  # Indicating whether the client is connected to the server
     try:
-        dataSocket.connect(('10.27.250.165', 8000))  
+        # Connecting to the server with certain ip and port
+        dataSocket.connect(('10.27.250.165', 8000))
     except (ConnectionError, OSError):
         on_connection = False
         
         
     def build(self):
+        # Sending and receiving messages 30 times every second
         send_event = Clock.schedule_interval(self.send_message, 1.0 / 30.0)
         receive_event = Clock.schedule_interval(self.receive_message, 1.0 / 30.0)
         if not self.on_connection:
@@ -89,10 +91,12 @@ class RemoteControlApp(App):
     
     
     def send_message(self, *args):
+        # Sending commands to the server
         self.dataSocket.send(self.command.encode())
     
     
     def receive(self, length):
+        # Processing the received messages from the server
         buffer = b''
         while length:
             data = self.dataSocket.recv(length)
@@ -110,9 +114,11 @@ class RemoteControlApp(App):
             self.dataSocket.close()
             root.prompt.text = 'Connection is Lost!'
         else:
+            # Receiving and processing the image data
             data = np.frombuffer(data, dtype='uint8')
             image_decode = cv2.imdecode(data, cv2.IMREAD_COLOR)
             cv2.imwrite('data/image.png', image_decode)
+            # Refreshing the image
             root.image.reload()
             
 
