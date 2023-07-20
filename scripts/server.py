@@ -81,10 +81,13 @@ if __name__ == '__main__':
         rospy.loginfo('The server has already started')
         dataSocket, address = listenSocket.accept()
         rospy.loginfo('Connected to the remote control')
+
+        motion_ctrl_topic = rospy.get_param("motion_ctrl", default="/cmd_vel")
+        grasp_ctrl_topic = rospy.get_param("grasp_ctrl", default="/position_write_topic")
+        image_topic = rospy.get_param("image_topic", default="/camera/color/image_raw")
         
-        moving_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
-        grasping_publisher = rospy.Publisher('/position_write_topic', position, queue_size=10)
-        image_topic = rospy.get_param("/image_topic", default="/camera/color/image_raw")
+        moving_publisher = rospy.Publisher(motion_ctrl_topic, Twist, queue_size=10)
+        grasping_publisher = rospy.Publisher(grasp_ctrl_topic, position, queue_size=10)
         rospy.Subscriber(image_topic, Image, callback, queue_size=10)
         
         rospy.spin()        
