@@ -58,7 +58,8 @@ def callback(data):
             message = position()
             message.x = 120
             grasping_publisher.publish(message)
-            
+
+        # Pre-processing and sending the image data
         encode_params = [cv2.IMWRITE_PNG_COMPRESSION, 8]
         result, image_encode = cv2.imencode('.png', image, encode_params)
         data = np.array(image_encode)
@@ -83,7 +84,7 @@ if __name__ == '__main__':
         
         moving_publisher = rospy.Publisher('cmd_vel', Twist, queue_size=10)
         grasping_publisher = rospy.Publisher('/position_write_topic', position, queue_size=10)
-        image_topic = rospy.get_param("image_topic", default="/camera/color/image_raw")
+        image_topic = rospy.get_param("/image_topic", default="/camera/color/image_raw")
         rospy.Subscriber(image_topic, Image, callback, queue_size=10)
         
         rospy.spin()        
