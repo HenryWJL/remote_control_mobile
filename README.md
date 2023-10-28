@@ -1,4 +1,7 @@
 # The Remote Control of Spark-H Robot
+
+<p align="center"><img src="https://github.com/HenryWJL/RGB-D_Camera_Based_Robotic_Grasping_Project/blob/main/Configuration/Img/Img1.png" /></p>
+
 This package is customized for the Spark-H robot with the purpose of using a mobile phone to control the robot. Python socket is used to realize the communication between the mobile phone and the robot's PC.
 ## Usage
 #### (1) Git clone this repository to your workspace.
