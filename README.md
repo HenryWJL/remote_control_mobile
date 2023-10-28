@@ -1,7 +1,7 @@
 # The Remote Control of Spark-H Robot
 
 <center class="half">
-    <img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/pc.gif" width="200"/> <img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/mobile.gif" width="200"/>
+    <img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/pc.gif" width="200"/><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/mobile.gif" width="200"/>
 </center>
 
 <p align="center"><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/pc.gif" /></p> <p align="center"><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/mobile.gif" /></p>
