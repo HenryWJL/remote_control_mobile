@@ -2,6 +2,8 @@
 
 <p align="center"><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/pc.gif" /></p>
 
+<p align="center"><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/mobile.gif" /></p>
+
 This package is customized for the Spark-H robot with the purpose of using a mobile phone to control the robot. Python socket is used to realize the communication between the mobile phone and the robot's PC.
 ## Usage
 #### (1) Git clone this repository to your workspace.
