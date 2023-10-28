@@ -1,4 +1,4 @@
-# The Remote Control of Spark-H Robot
+# Remote Control of Spark-H Robot
 
 This is the Python implementation of Spark-H robot's remote control.
 
@@ -7,7 +7,7 @@ This is the Python implementation of Spark-H robot's remote control.
 </div>
 
 ## Usage
-#### (1) Git clone this repository to your Spark-H robot's workspace.
+#### (1) Git clone this repository to your robot's workspace.
 ```bash
 cd spark_noetic/src
 git clone https://github.com/HenryWJL/remote_control_socket.git
