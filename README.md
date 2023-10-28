@@ -1,6 +1,6 @@
 # Remote Control of Spark-H Robot
 
-This is the Python implementation of Spark-H robot's remote control.
+This is the Python implementation of Spark-H robot's remote control. For more details about Spark-H robot, please see [here](https://github.com/NXROBO/spark_noetic).
 
 <div align="center">
     <img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/pc.gif"/><img src="https://github.com/HenryWJL/remote_control_socket/blob/main/image/mobile.gif"/>
